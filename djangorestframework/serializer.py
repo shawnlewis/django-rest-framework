@@ -110,8 +110,10 @@ class Serializer(object):
         if not fields:
             default = self.get_default_fields(obj)
             include = self.include or ()
+            include_fnames = [f[0] for f in _fields_to_list(include)]
             exclude = self.exclude or ()
-            fields = set(default + list(include)) - set(exclude)
+            fields = set(default) - set(include_fnames) - set(exclude)
+            fields.update(include)
 
         return fields
 
