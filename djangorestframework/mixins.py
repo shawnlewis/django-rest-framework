@@ -513,7 +513,7 @@ class ModelMixin(object):
         """
         Return the queryset for this view.
         """
-        return getattr(self.resource, 'queryset',
+        return getattr(self._resource, 'queryset',
                        self.resource.model.objects.all())
 
     def get_ordering(self):
